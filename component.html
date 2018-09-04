@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js practice</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="component">
+  <ol>
+    <!--
+      各 todo-item の内容を表す todo オブジェクトを与えます。
+      これにより内容は動的に変化します。
+      また後述する "key" を各コンポーネントに提供する必要があります。
+    -->
+    <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+  </ol>
+</div>
+<script>
+    Vue.component('todo-item', {
+        props: ['todo'],
+        template: '<li>{{ todo.text }}</li>'
+    });
+
+    let app7 = new Vue({
+        el: '#component',
+        data: {
+            groceryList: [
+                {id: 0, text: 'Vegetables'},
+                {id: 1, text: 'Cheese'},
+                {id: 2, text: 'Whatever else humans are supposed to eat'}
+            ]
+        }
+    })
+</script>
+</body>
+</html>
